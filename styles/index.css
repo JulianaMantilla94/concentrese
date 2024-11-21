@@ -314,7 +314,7 @@ body {
 
 @media (max-width: 440px) {
     .actions button {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .game-header {
