@@ -1,0 +1,366 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'FONTAFAVORITA', sans-serif;
+    margin: 25px;
+}
+
+.content-game {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.banner {
+    background-color: #f5f5f5;
+    padding: 8px 20px;
+    border-radius: 5px;
+    max-width: 600px;
+    text-align: center;
+}
+
+.banner p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.banner-link {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.game-header {
+    grid-column: 1 / 3;
+}
+
+.game .board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    width: 625px;
+    margin: 0 auto;
+}
+
+.game .board .item {
+    width: 150px;
+    height: 150px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.game .board .preview {
+    position: absolute;
+    height: 630px;
+    width: 630px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #add8e6d9;
+    font-size: 60px;
+    text-align: center;
+    color: black;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-front {
+    background-color: #E3F2FD;
+    background-image:
+        linear-gradient(135deg, #BBDEFB 25%, transparent 25%, transparent 50%, #BBDEFB 50%, #BBDEFB 75%, transparent 75%, transparent);
+    background-size: 20px 20px;
+    border: 2px solid #2196f3;
+}
+
+.card-back {
+    background-image: url(../public/images/card-fondo.webp);
+    background-size: cover;
+    transform: rotateY(180deg);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.found {
+    border: 2px solid #4caf50;
+    border-color: #4caf50;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.rotate {
+    transform: rotateY(180deg);
+}
+
+.game .board .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.pairs {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.status div {
+    border: 1px solid #027ada;
+    border-radius: 5px;
+    font-size: 30px;
+    text-align: center;
+    background-color: #2196f3;
+    color: white;
+    padding: 6px;
+}
+
+.timer {
+    border: 1px solid #b26a00;
+    border-radius: 5px;
+    font-size: 30px;
+    text-align: center;
+    background-color: #ff9800;
+    color: white;
+    padding: 6px 30px;
+}
+
+.actions {
+    text-align: center;
+}
+
+.actions button {
+    border: 1px solid #357a38;
+    border-radius: 5px;
+    font-size: 30px;
+    text-align: center;
+    background-color: #4caf50;
+    color: white;
+    padding: 6px 30px;
+    cursor: pointer;
+}
+
+.actions button.btn-disabled {
+    border: 1px solid #a5a5a5;
+    background-color: #c7c7c7;
+    color: #8a8a8a;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.options {
+    gap: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.not-available {
+    display: none;
+}
+
+.win {
+    display: none !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.win.active {
+    display: flex !important;
+    animation: fadeIn 0.8s ease;
+}
+
+.winner-content {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.winner-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.winner-content p {
+    font-size: 1.2rem;
+    margin: 15px 0;
+}
+
+.winner-content button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #4caf50;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.winner-content button:hover {
+    background-color: #e8f5e9;
+}
+
+.winner-content button:active {
+    transform: scale(0.95);
+}
+
+.scores table {
+    width: 400px;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+@media (max-width: 980px) {
+    .content-game {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .state {
+        gap: 10px;
+        width: 435px;
+    }
+
+    .game-header {
+        grid-column: 1;
+        width: 435px;
+    }
+
+    .game {
+        grid-row: 3;
+        width: 430px;
+        margin: auto;
+    }
+
+    .game .board {
+        width: 430px;
+    }
+
+    .game .board .item {
+        width: 100px;
+        height: 100px;
+    }
+
+    .game .board .preview {
+        height: 430px;
+        width: 435px;
+    }
+
+    .pairs {
+        width: 100%;
+        justify-content: space-between;
+        align-items: end;
+    }
+
+    .status div,
+    .timer {
+        font-size: 20px;
+    }
+
+    .options {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .actions button {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 440px) {
+    .actions button {
+        font-size: 16px;
+    }
+
+    .game-header {
+        width: 356px;
+    }
+
+    .state {
+        width: 356px;
+    }
+
+    .game {
+        width: 356px;
+    }
+
+    .game .board .preview {
+        width: 356px;
+        height: 348px;
+    }
+
+    .game .board {
+        width: 356px;
+    }
+
+    .game .board .item {
+        width: 80px;
+        height: 80px;
+    }
+
+    .scores table {
+        width: 356px;
+    }
+}
+
+@media (max-width: 360px) {
+    .scores {
+        display: none !important;
+    }
+
+    .content-game {
+        display: none;
+    }
+
+    .not-available {
+        display: block;
+        position: absolute;
+        top: 40%;
+        margin: 0 40px;
+    }
+}

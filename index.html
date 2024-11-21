@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concentrese</title>
+  <link href="https://fonts.googleapis.com/css2?family=FONTAFAVORITA&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles/index.css" />
+  <script src="./src/index.js"></script>
+</head>
+
+<body>
+  <audio id="victory-sound" src="./public/sounds/win.mp3"></audio>
+  <audio id="match-sound" src="./public/sounds/match.mp3"></audio>
+  <section class="content-game">
+    <header class="game-header">
+      <h1>Concentrese</h1>
+      <span>
+        Este juego fue desarrollado por Juliana Mantilla como parte de su
+        entrega para Talento Tech Oriente
+      </span>
+    </header>
+    <section class="game">
+      <div class="board"></div>
+      <section class="banner">
+        <p>
+          Las imágenes fueron tomadas del API gratuita de
+          <strong>Dragon Ball Super</strong>.
+          <a href="https://web.dragonball-api.com/" target="_blank" class="banner-link">Ir al sitio</a>
+        </p>
+      </section>
+    </section>
+    <section class="state">
+      <section class="pairs">
+        <div class="status">
+          <span>Parejas encontradas:</span>
+          <div id="pairs">0</div>
+        </div>
+        <div class="status">
+          <span>Parejas Restantes:</span>
+          <div id="remaining">8</div>
+        </div>
+      </section>
+      <section id="timer" class="timer">00:00</section>
+    </section>
+    <section class="actions">
+      <button id="btn-iniciar" onclick="initGame()">Iniciar</button>
+      <button id="btn-pausar" class="btn-disabled" onclick="pauseGame()">
+        Pausar
+      </button>
+      <button id="btn-reiniciar" class="btn-disabled" onclick="reinitGame()">
+        Reiniciar
+      </button>
+    </section>
+  </section>
+
+  <section class="scores">
+    <h2>Mejores Puntajes</h2>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Puntaje</th>
+        </tr>
+      </thead>
+      <tbody id="table-scores"></tbody>
+    </table>
+  </section>
+
+  <section class="not-available">
+    <h2>¡Ups! Tu pantalla es un poco pequeña para este juego.</h2>
+    <p>
+      No te preocupes, puedes probarlo en otro dispositivo. Asegúrate de que
+      el ancho mínimo de tu pantalla sea de <b>360px</b> para disfrutarlo al
+      máximo.
+    </p>
+  </section>
+
+  <section class="win" id="win">
+    <div class="winner-content">
+      <h1>¡Felicidades!</h1>
+      <p>Has ganado el juego.</p>
+      <p>Tu tiempo final fue <strong id="final-time">00:00</strong>.</p>
+      <p>¿Quieres jugar de nuevo?</p>
+      <button onclick="closeMessage()">Volver a jugar</button>
+    </div>
+  </section>
+</body>
+
+</html>
